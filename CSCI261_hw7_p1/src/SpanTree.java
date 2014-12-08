@@ -3,8 +3,8 @@
  * 
  * @author	Derek Brown <djb3718@rit.edu>
  *
- * Purpose:	Finds the minimum f-containing spanning tree for any given weighted
- * 			undirected graph.
+ * Purpose:	Finds the minimum f-containing spanning tree for any given
+ *		weighted undirected graph.
  */
 
 import java.util.Scanner;
@@ -29,8 +29,8 @@ public class SpanTree {
 	// Constructor
 	
 	/**
-	 * Constructor for creating an object that holds important info for solving
-	 * the SpanTree problem.
+	 * Constructor for creating an object that holds important info for
+	 * solving the SpanTree problem.
 	 * 
 	 * @param v	The number of vertices in the graph.
 	 * @param e	The number of edges in the graph.
@@ -131,13 +131,12 @@ public class SpanTree {
 	 * Depth-First search helper function, used to determine if there is a 
 	 * cycle in the spanning tree.
 	 * 
-	 * @param s		The vertex to consider.
+	 * @param s	The vertex to consider.
 	 * @param prev	The parent of the current vertex.
-	 * @return		True, if spanning tree contains a cycle,
-	 * 				False, otherwise.
+	 * @return	True, if spanning tree contains a cycle,
+	 * 		False, otherwise.
 	 */
 	public boolean DFS( int s, int prev ) {
-		System.out.printf("s=%d\tprev=%d\n", s, prev);
 		seen[s] = true;
 		boolean isCycle = false;
 		for( int u = 0 ; u < degree[s] ; u++ ) {
@@ -149,12 +148,13 @@ public class SpanTree {
 	}//end DFS
 	
 	/**
-	 * Helper method, constructs the adjacency list for the spanning tree to be
-	 * used in DFS to determine if there exists a cycle.
+	 * Helper method, constructs the adjacency list for the spanning tree
+	 * to be used in DFS to determine if there exists a cycle.
 	 */
 	public void constructAdjList() {
 		for( Edge e : T ) {
-			adjList[e.getStart()][degree[e.getStart()]] = e.getEnd();
+			adjList[e.getStart()][degree[e.getStart()]] =
+				e.getEnd();
 			degree[e.getStart()]++;
 			adjList[e.getEnd()][degree[e.getEnd()]] = e.getStart();
 			degree[e.getEnd()]++;
@@ -162,11 +162,12 @@ public class SpanTree {
 	}//end constructAdjList
 	
 	/**
-	 * The algorithm determining if the spanning tree returned by the Kruskal
-	 * algorithm actually is a spanning tree, and doesn't contain a cycle.
+	 * The algorithm determining if the spanning tree returned by the
+	 * Kruskal algorithm actually is a spanning tree, and doesn't contain
+	 * a cycle.
 	 * 
 	 * @return	true, if it is a spanning tree,
-	 * 			false, otherwise.
+	 * 		false, otherwise.
 	 */
 	public boolean isSpanningTree() {
 		constructAdjList();
@@ -174,12 +175,12 @@ public class SpanTree {
 	}//end isSpanningTree
 	
 	/**
-	 * The main logic for the program, Reads input from the user, creates the
-	 * SpanTree object to house the data and then feeds the data into the
-	 * Kruskal algorithm to find the spanning tree, Then once Kruskal has
-	 * completed execution, run a second algorithm to determine if the result
-	 * is truly a spanning tree, ie does not contain a cycle,  The result is
-	 * then displayed to the user.
+	 * The main logic for the program, Reads input from the user, creates
+	 * the SpanTree object to house the data and then feeds the data into
+	 * the Kruskal algorithm to find the spanning tree, Then once Kruskal
+	 * has completed execution, run a second algorithm to determine if the
+	 * result is truly a spanning tree, ie does not contain a cycle,  The
+	 * result is then displayed to the user.
 	 * 
 	 * @param args	Command line arguments, unused.
 	 */
@@ -232,8 +233,8 @@ public class SpanTree {
 	 * 
 	 * @author	Derek Brown
 	 * 
-	 * Purpose:	Helper class, used to store information important for an edge,
-	 * 			like the start, end, and weight.
+	 * Purpose:	Helper class, used to store information important for
+	 *		an edge, like the start, end, and weight.
 	 */
 	public class Edge implements Comparable<Edge> {
 		
@@ -253,7 +254,7 @@ public class SpanTree {
 		 * @param e	The end vertex
 		 * @param w	The weight of the edge.
 		 * @param f	true if edge is in F,
-		 * 			false, otherwise.
+		 * 		false, otherwise.
 		 */
 		public Edge( int s, int e, int w, boolean f ) {
 			this.start = s;
@@ -295,20 +296,21 @@ public class SpanTree {
 		 * Getter for retrieving if the edge belongs to F.
 		 * 
 		 * @return	true if in F,
-		 * 			false otherwise.
+		 * 		false otherwise.
 		 */
 		public boolean getInF() {
 			return this.inF;
 		}//end getInF
 
 		/**
-		 * CompareTo function used for sorting the edges based on weight.
+		 * CompareTo function used for sorting the edges based on
+		 * weight.
 		 * 
 		 * @param o	The edge that this edge is being compared to.
 		 * 
 		 * @return	-1 if this edge has less weight than o.weight,
-		 * 			0 if both edges have the same weight,
-		 * 			1 if this edge has greater weight than o.weight.
+		 * 		0 if both edges have the same weight,
+		 * 		1 if this edge has greater weight than o.weight.
 		 */
 		@Override
 		public int compareTo(Edge o) {
